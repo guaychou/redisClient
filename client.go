@@ -50,12 +50,12 @@ func RedisClientFlush(c redis.Conn) string {
 	return "All key values has been deleted."
 }
 
-func RedisClientDelete(c redis.Conn,key string) string{
-	values, err := redis.String(c.Do("DEL", key))
+func RedisClientDelete(c redis.Conn, key string) string{
+	_,err := c.Do("DEL", key)
 	if err == redis.ErrNil {
 		return "Key "+key+" does not exist !!! .\nSET first with /set command !!!"
 	} else if err != nil {
 		log.Fatal(err)
 	}
-	return values
+	return "Key has been deleted"
 }
