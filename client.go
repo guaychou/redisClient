@@ -59,3 +59,11 @@ func RedisClientDelete(c redis.Conn, key string) string{
 	}
 	return "Key has been deleted"
 }
+
+func RedisClientPing(c redis.Conn) string{
+	values,err := redis.String(c.Do("PING"))
+	if err != nil{
+		log.Fatal(err)
+	}
+	return values
+}
